@@ -299,7 +299,7 @@ function menu_build() {
 			label: "File",
 			submenu: [
 				{
-					label: "About",
+					label: "Acerca",
 					click: () => {
 						let s = `Nibbler ${electron.app.getVersion()} in Electron ${process.versions.electron}\n\n`;
 						s += `Engine: ${loaded_engine}\nWeights: ${loaded_weights || loaded_evalfile || "<auto>"}`;
@@ -310,14 +310,14 @@ function menu_build() {
 					type: "separator"
 				},
 				{
-					label: "New game",
+					label: "Nuevo juego",
 					accelerator: "CommandOrControl+N",
 					click: () => {
 						win.webContents.send("call", "new_game");
 					}
 				},
 				{
-					label: "New 960 game",
+					label: "Nuevo ajedrez 960",
 					accelerator: "CommandOrControl+Shift+N",
 					click: () => {
 						win.webContents.send("call", "new_960");
@@ -327,7 +327,7 @@ function menu_build() {
 					type: "separator"
 				},
 				{
-					label: "Open PGN...",
+					label: "Abrir PGN...",
 					accelerator: "CommandOrControl+O",
 					click: () => {
 						let files = open_dialog(win, {
@@ -351,7 +351,7 @@ function menu_build() {
 					type: "separator"
 				},
 				{
-					label: "Load FEN / PGN from clipboard",
+					label: "Cargar FEN / PGN desde portapapeles",
 					accelerator: "CommandOrControl+Shift+V",
 					click: () => {
 						win.webContents.send("call", {
@@ -364,7 +364,7 @@ function menu_build() {
 					type: "separator"
 				},
 				{
-					label: "Save this game...",
+					label: "Guardar este juego...",
 					accelerator: "CommandOrControl+S",
 					click: () => {
 						if (config.save_enabled !== true) {		// Note: exact test for true, not just any truthy value
@@ -384,14 +384,14 @@ function menu_build() {
 					}
 				},
 				{
-					label: "Write PGN to clipboard",
+					label: "Copiar PGN al portapapeles",
 					accelerator: "CommandOrControl+K",
 					click: () => {
 						win.webContents.send("call", "pgn_to_clipboard");
 					}
 				},
 				{
-					label: "PGN saved statistics",
+					label: "Estadísticas de guardado PGN",
 					submenu: [
 						{
 							label: "EV",
@@ -430,7 +430,7 @@ function menu_build() {
 							}
 						},
 						{
-							label: "N (absolute)",
+							label: "N (absoluto)",
 							type: "checkbox",
 							checked: config.pgn_n_abs,
 							click: () => {
@@ -441,7 +441,7 @@ function menu_build() {
 							}
 						},
 						{
-							label: "...out of total",
+							label: "...fuera del total",
 							type: "checkbox",
 							checked: config.pgn_of_n,
 							click: () => {
@@ -452,7 +452,7 @@ function menu_build() {
 							}
 						},
 						{
-							label: "Depth (A/B only)",
+							label: "Profundidad (A/B solamente)",
 							type: "checkbox",
 							checked: config.pgn_depth,
 							click: () => {
@@ -554,17 +554,17 @@ function menu_build() {
 					type: "separator"
 				},
 				{
-					label: "Cut",
+					label: "Cortar",
 					accelerator: "CommandOrControl+X",
 					role: "cut",
 				},
 				{
-					label: "Copy",
+					label: "Copiar",
 					accelerator: "CommandOrControl+C",
 					role: "copy",
 				},
 				{
-					label: "Paste",
+					label: "Pegar",
 					accelerator: "CommandOrControl+V",
 					role: "paste",
 				},
@@ -572,14 +572,14 @@ function menu_build() {
 					type: "separator"
 				},
 				{
-					label: "Quit",							// Presumably calls electron.app.quit(), which tries to
+					label: "Salir",							// Presumably calls electron.app.quit(), which tries to
 					accelerator: "CommandOrControl+Q",		// close all windows, and quits iff it succeeds (which
 					role: "quit"							// it won't, because we prevent the initial close...)
 				},
 			]
 		},
 		{
-			label: "Tree",
+			label: "Árbol",
 			submenu: [
 				{
 					label: "Play engine choice",
