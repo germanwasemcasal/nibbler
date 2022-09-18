@@ -1,4 +1,6 @@
-# Nibbler
+# Traducción de Nibbler a español
+
+
 
 "By far the best ICCF analysis tool for Leela." &mdash; *jhorthos*
 
