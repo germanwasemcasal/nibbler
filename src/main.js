@@ -749,7 +749,7 @@ function menu_build() {
 			label: "Analysis",
 			submenu: [
 				{
-					label: "Go",
+					label: "Comenzar",
 					accelerator: "CommandOrControl+G",
 					click: () => {
 						win.webContents.send("call", {
@@ -759,7 +759,7 @@ function menu_build() {
 					}
 				},
 				{
-					label: "Go and lock engine",
+					label: "Comenzar y bloquear motor",
 					accelerator: "CommandOrControl+Shift+G",
 					click: () => {
 						win.webContents.send("call", {
@@ -769,7 +769,7 @@ function menu_build() {
 					}
 				},
 				{
-					label: "Return to locked position",
+					label: "Volver a posición bloquead",
 					click: () => {
 						win.webContents.send("call", "return_to_lock");
 					}
@@ -778,7 +778,7 @@ function menu_build() {
 					type: "separator"
 				},
 				{
-					label: "Halt",
+					label: "Detener",
 					accelerator: "CommandOrControl+H",
 					click: () => {
 						win.webContents.send("call", {
@@ -791,7 +791,7 @@ function menu_build() {
 					type: "separator"
 				},
 				{
-					label: "Auto-evaluate line",
+					label: "Auteevaluar linea",
 					accelerator: "F12",
 					click: () => {
 						win.webContents.send("call", {
@@ -801,7 +801,7 @@ function menu_build() {
 					}
 				},
 				{
-					label: "Auto-evaluate line, backwards",
+					label: "Autoevaluar linea, hacia atrás",
 					accelerator: "Shift+F12",
 					click: () => {
 						win.webContents.send("call", {
@@ -814,7 +814,7 @@ function menu_build() {
 					type: "separator"
 				},
 				{
-					label: "Show focus (searchmoves) buttons",
+					label: "Mostrar botones de foco (movimientos)",
 					type: "checkbox",
 					checked: config.searchmoves_buttons,
 					click: () => {
@@ -825,13 +825,13 @@ function menu_build() {
 					}
 				},
 				{
-					label: "Clear focus",
+					label: "Limpiar foco",
 					click: () => {
 						win.webContents.send("call", "clear_searchmoves");
 					}
 				},
 				{
-					label: "Invert focus",
+					label: "Invertir foco",
 					accelerator: "CommandOrControl+I",
 					click: () => {
 						win.webContents.send("call", "invert_searchmoves");
@@ -841,7 +841,7 @@ function menu_build() {
 					type: "separator"
 				},
 				{
-					label: "Winrate POV",
+					label: "POV % de éxito",
 					submenu: [
 						{
 							label: "Current",

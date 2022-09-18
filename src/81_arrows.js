@@ -283,6 +283,7 @@ let arrow_props = {
 				if (show_move_head) {			// This is the best layer to draw the head outline.
 					boardctx.beginPath();
 					boardctx.arc(cc2.cx, cc2.cy, config.arrowhead_radius + 2, 0, 2 * Math.PI);
+					boardctx.rect(cc2.cx-35, cc2.cy-35, 70,70);
 					boardctx.fill();
 				}
 			}
@@ -302,6 +303,8 @@ let arrow_props = {
 			boardctx.fillStyle = o.colour;
 			boardctx.beginPath();
 			boardctx.arc(cc2.cx, cc2.cy, config.arrowhead_radius, 0, 2 * Math.PI);
+			boardctx.rect(cc2.cx-35, cc2.cy-35, 70,70);
+			
 			boardctx.fill();
 			boardctx.fillStyle = "black";
 
@@ -466,6 +469,7 @@ let arrow_props = {
 			boardctx.fillStyle = o.colour;
 			boardctx.beginPath();
 			boardctx.arc(cc2.cx, cc2.cy, config.arrowhead_radius, 0, 2 * Math.PI);
+			boardctx.rect(cc2.cx-35, cc2.cy-35, 70,70);
 			boardctx.fill();
 			boardctx.fillStyle = "black";
 
