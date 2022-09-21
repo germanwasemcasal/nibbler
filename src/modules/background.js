@@ -8,9 +8,13 @@ function background(light, dark, square_size) {
 	let ctx = c.getContext("2d");
 
 	for (let x = 0; x < 8; x++) {
+		
 		for (let y = 0; y < 8; y++) {
 			ctx.fillStyle = (x + y) % 2 === 0 ? light : dark;
+
 			ctx.fillRect(x * square_size, y * square_size, square_size, square_size);
+		
+		
 		}
 	}
 

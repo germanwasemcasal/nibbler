@@ -23,6 +23,8 @@ for key, value in zips.items():
 		continue
 	build_dir = "dist"
 	build_app_dir = os.path.join(build_dir, "resources/app")
+ 
+	shutil.rmtree(build_dir)
 	os.makedirs(build_app_dir)
 	for file in useful_files:
 		shutil.copy(file, build_app_dir)
