@@ -6,16 +6,16 @@ function background(light, dark, square_size) {
 	c.width = square_size * 8;
 	c.height = square_size * 8;
 	let ctx = c.getContext("2d");
-
+var letras = ["a","b","c","d","e","f","g","h"];
 	for (let x = 0; x < 8; x++) {
 		
 		for (let y = 0; y < 8; y++) {
 			ctx.fillStyle = (x + y) % 2 === 0 ? light : dark;
 
 			ctx.fillRect(x * square_size, y * square_size, square_size, square_size);
-			ctx.font = 'bold 12px Arial';
-			ctx.fillStyle = 'white';
-			ctx.fillText(x +"-"+y, x * square_size, y * square_size);
+			ctx.font = 'bold 14px Arial';
+			ctx.fillStyle = 'black';
+			ctx.fillText(letras[x] +"-"+(9-y), x * square_size, y * square_size);
 		
 		}
 	}
