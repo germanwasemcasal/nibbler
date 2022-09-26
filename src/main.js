@@ -37,6 +37,10 @@ const running_as_electron = require("./modules/running_as_electron");
 const stringify = require("./modules/stringify");
 const url = require("url");
 
+
+const fs = require('fs'); // Load the File System to execute our common tasks (CRUD)
+
+
 // We want sync save and open dialogs. In Electron 5 we could get these by calling
 // showSaveDialog or showOpenDialog without a callback, but in Electron 6 this no
 // longer works and we must call new functions. So find out if they exist...
@@ -184,7 +188,7 @@ function startup() {
 
 	electron.ipcMain.on("ack_engine", (event, msg) => {
 		loaded_engine = msg;
-		set_one_check(msg ? true : false, "Engine", "Choose engine...");
+		set_one_check(msg ? true : false, "Motor", "Elegir motor...");
 	});
 
 	electron.ipcMain.on("ack_logfile", (event, msg) => {
@@ -630,42 +634,42 @@ function menu_build() {
 					type: "separator"
 				},
 				{
-					label: "Root",
+					label: "Raíz inicial",
 					accelerator: "Home",
 					click: () => {
 						win.webContents.send("call", "goto_root");
 					}
 				},
 				{
-					label: "End",
+					label: "Final",
 					accelerator: "End",
 					click: () => {
 						win.webContents.send("call", "goto_end");
 					}
 				},
 				{
-					label: "Backward",
+					label: "Atrás",
 					accelerator: "Left",
 					click: () => {
 						win.webContents.send("call", "prev");
 					}
 				},
 				{
-					label: "Forward",
+					label: "Adelante",
 					accelerator: "Right",
 					click: () => {
 						win.webContents.send("call", "next");
 					}
 				},
 				{
-					label: "Previous sibling",
+					label: "Nodo hermano atrás",
 					accelerator: "Up",
 					click: () => {
 						win.webContents.send("call", "previous_sibling");
 					}
 				},
 				{
-					label: "Next sibling",
+					label: "Nodo hermano siguiente",
 					accelerator: "Down",
 					click: () => {
 						win.webContents.send("call", "next_sibling");
@@ -675,7 +679,7 @@ function menu_build() {
 					type: "separator"
 				},
 				{
-					label: "Return to main line",
+					label: "Volver a la línea principal",
 					accelerator: "CommandOrControl+R",
 					click: () => {
 						win.webContents.send("call", "return_to_main_line");
@@ -699,7 +703,7 @@ function menu_build() {
 					type: "separator"
 				},
 				{
-					label: "Delete node",
+					label: "Borrar nodo",
 					accelerator: "CommandOrControl+Backspace",
 					click: () => {
 						win.webContents.send("call", "delete_node");
@@ -730,7 +734,7 @@ function menu_build() {
 					type: "separator"
 				},
 				{
-					label: "Show PGN games list",
+					label: "Mostrar lista de PGN",
 					accelerator: "CommandOrControl+P",
 					click: () => {
 						win.webContents.send("call", "show_pgn_chooser");
@@ -746,7 +750,7 @@ function menu_build() {
 			]
 		},
 		{
-			label: "Analysis",
+			label: "Análisis",
 			submenu: [
 				{
 					label: "Comenzar",
@@ -943,7 +947,7 @@ function menu_build() {
 					label: "PV clicks",
 					submenu: [
 						{
-							label: "Do nothing",
+							label: "No hacer nada",
 							type: "checkbox",
 							checked: config.pv_click_event === 0,
 							click: () => {
@@ -952,7 +956,7 @@ function menu_build() {
 							}
 						},
 						{
-							label: "Go there",
+							label: "Mover aquí",
 							type: "checkbox",
 							checked: config.pv_click_event === 1,
 							click: () => {
@@ -961,7 +965,7 @@ function menu_build() {
 							}
 						},
 						{
-							label: "Add to tree",
+							label: "Agregar al árbol",
 							type: "checkbox",
 							checked: config.pv_click_event === 2,
 							click: () => {
@@ -975,7 +979,7 @@ function menu_build() {
 					type: "separator"
 				},
 				{
-					label: "Write infobox to clipboard",
+					label: "Copiar infobox al portapapeles",
 					click: () => {
 						win.webContents.send("call", "infobox_to_clipboard");
 					}
@@ -984,7 +988,7 @@ function menu_build() {
 					type: "separator"
 				},
 				{
-					label: "Forget all analysis",
+					label: "Olvidar todos los análisis",
 					accelerator: "CommandOrControl+.",
 					click: () => {
 						win.webContents.send("call", "forget_analysis");
@@ -993,10 +997,10 @@ function menu_build() {
 			]
 		},
 		{
-			label: "Display",
+			label: "Vista",
 			submenu: [
 				{
-					label: "Flip board",
+					label: "Invertir tablero",
 					accelerator: "CommandOrControl+F",
 					click: () => {
 						win.webContents.send("call", {
@@ -1009,7 +1013,7 @@ function menu_build() {
 					type: "separator"
 				},
 				{
-					label: "Arrows",
+					label: "Flechas",
 					type: "checkbox",
 					checked: config.arrows_enabled,
 					click: () => {
@@ -1067,7 +1071,7 @@ function menu_build() {
 					type: "separator"
 				},
 				{
-					label: "Arrowhead type",
+					label: "Tipo de flecha",
 					submenu: [
 						{
 							label: "Winrate",
@@ -1275,7 +1279,7 @@ function menu_build() {
 					type: "separator"
 				},
 				{
-					label: "Infobox stats",
+					label: "Estado de infobox",
 					submenu: [
 						{
 							label: "Centipawns",
@@ -1315,7 +1319,7 @@ function menu_build() {
 							}
 						},
 						{
-							label: "Depth (A/B only)",
+							label: "Profundidad ( Solo A/B)",
 							type: "checkbox",
 							checked: config.show_depth,
 							click: () => {
@@ -1340,7 +1344,7 @@ function menu_build() {
 							}
 						},
 						{
-							label: "V - static evaluation",
+							label: "V - evaluación estática",
 							type: "checkbox",
 							checked: config.show_v,
 							click: () => {

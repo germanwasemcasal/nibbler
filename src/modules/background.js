@@ -13,7 +13,9 @@ function background(light, dark, square_size) {
 			ctx.fillStyle = (x + y) % 2 === 0 ? light : dark;
 
 			ctx.fillRect(x * square_size, y * square_size, square_size, square_size);
-		
+			ctx.font = 'bold 12px Arial';
+			ctx.fillStyle = 'white';
+			ctx.fillText(x +"-"+y, x * square_size, y * square_size);
 		
 		}
 	}
